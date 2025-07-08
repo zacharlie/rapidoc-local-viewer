@@ -1,2 +1,1 @@
-# rapidoc-local-viewer
-view an openapi spec json file easily
+View an openapi spec json file easily with [Task](https://taskfile.dev/).
