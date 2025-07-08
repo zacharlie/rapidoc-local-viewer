@@ -1,0 +1,45 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Minimal API",
+        "version": "1.0.0",
+        "license": {
+            "name": "WTFPL",
+            "url": "https://example.com"
+        }
+    },
+    "servers": [
+        {
+            "url": "http://local.host"
+        }
+    ],
+    "paths": {
+        "/hello": {
+            "get": {
+                "summary": "Say hello",
+                "operationId": "sayHello",
+                "security": [],
+                "responses": {
+                    "200": {
+                        "description": "A friendly greeting",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        }
+    }
+}

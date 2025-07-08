@@ -1,0 +1,61 @@
+version: "3"
+
+dotenv: [".env"]
+
+tasks:
+  default:
+    desc: Run task --list
+    cmds:
+      - task: list
+
+  list:
+    desc: Run task --list
+    cmds:
+      - cmd: echo -e '\033[0;33mI think you meant to run \033[1;32m`task --list`\033[0;33m... FTFY:\033[0m'
+        silent: true
+      - cmd: task --list
+        silent: true
+
+  serve:py:
+    desc: Run the Python server
+    cmds:
+      - cmd: python -m http.server 8000
+        silent: false
+
+  serve:py3:
+    desc: Run the Python server
+    cmds:
+      - cmd: python3 -m http.server 8000
+        silent: false
+
+  # serve:js:
+  #   desc: Run the JavaScript server
+  #   cmds:
+  #     - cmd: npx http-server -p 8000
+
+  serve:js:
+    desc: Run the JavaScript server
+    cmds:
+      - cmd: >
+          node -e "
+            require('http')
+              .createServer((req, res) => {
+            require('fs').readFile(
+              require('path').join(
+              process.cwd(),
+              req.url == '/' ? 'index.html' : req.url
+              ),
+              (err, data) => {
+              if (err) {
+                res.writeHead(404);
+                res.end('Not found');
+              } else {
+                res.end(data);
+              }
+              }
+            );
+              })
+              .listen(8000, () => 
+            console.log('Server running at http://localhost:8000/')
+              );
+          "
